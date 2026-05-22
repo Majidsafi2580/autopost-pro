@@ -268,7 +268,7 @@ def publish_text_to_page(page, text):
     try:
         r = requests.post(
             GRAPH_BASE + "/" + page_id + "/feed",
-            data={"message": text, "access_token": page_token},
+            data={"message": text, "published": "true", "access_token": page_token},
             timeout=20,
         )
         data = r.json()
@@ -284,7 +284,7 @@ def publish_photo_to_page(page, image_url, caption):
     try:
         r = requests.post(
             GRAPH_BASE + "/" + page_id + "/photos",
-            data={"url": image_url, "caption": caption or "", "access_token": page_token},
+            data={"url": image_url, "caption": caption or "", "published": "true", "access_token": page_token},
             timeout=30,
         )
         data = r.json()
@@ -300,7 +300,7 @@ def publish_video_to_page(page, video_url, description):
     try:
         r = requests.post(
             GRAPH_BASE + "/" + page_id + "/videos",
-            data={"file_url": video_url, "description": description or "", "access_token": page_token},
+            data={"file_url": video_url, "description": description or "", "published": "true", "access_token": page_token},
             timeout=60,
         )
         data = r.json()
